@@ -14,7 +14,23 @@ class PanelIntro extends PanelBase {
   #init() {
     this.initScoreBtn();
     this.initPlayBtn();
+
+    const header = new PIXI.Text("Твои рекорды:");
+    header.anchor.set(0.5, 0.5);
+    header.position.set(0, -405);
+    this.addChild(header);
+
+    const high = new PIXI.Text("Рекорд:");
+    high.anchor.set(0.5, 0.5);
+    high.position.set(0, -305);
+    this.addChild(high);
+
+    const nameField = this.loader.getSprite("user_name_bar.png");
+    nameField.anchor.set(0.5, 0.5);
+    nameField.position.set(0, 100);
+    this.addChild(nameField);
   }
+
   initPlayBtn() {
     const btn = new Button("play");
     btn.position.set(170, 300);
@@ -26,7 +42,6 @@ class PanelIntro extends PanelBase {
     btn.position.set(-170, 300);
     this.addChild(btn);
   }
-
 }
 
 export default PanelIntro;

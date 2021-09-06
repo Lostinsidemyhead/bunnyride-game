@@ -17,6 +17,11 @@ class PanelBase extends PIXI.Container {
     const bg = this.loader.getSprite("info_plate_big.png");
     bg.anchor.set(0.5, 0.5);
     this.addChild(bg);
+
+    const header = this.loader.getSprite("header_info_plate.png");
+    header.anchor.set(0.5, 0.5);
+    header.position.set(0, -410)
+    this.addChild(header);
   }
 }
 
