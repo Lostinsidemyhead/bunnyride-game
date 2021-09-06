@@ -1,11 +1,12 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   context: path.join(__dirname, 'src'),
   mode: 'development',
-  entry: ['./index.ts'],
+  entry: ['./app/main.ts'],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -13,7 +14,7 @@ module.exports = {
     assetModuleFilename: 'assets/[name][ext][query]'
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.json'],
   },
   devServer: {
     port: 8080
@@ -34,6 +35,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html'
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'assets',
+          to: 'assets',
+        },
+      ],
     }),
     new CleanWebpackPlugin(),
   ]
