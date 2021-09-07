@@ -27,6 +27,8 @@ class PanelEnd extends PanelBase {
     const btnOk = new Button("ok");
     btnOk.position.set(0, 370);
     this.addChild(btnOk);
+    const reloadEvent = new Event("Reload");
+    btnOk.on("click", (event) => {dispatchEvent(reloadEvent)});
 
     let sprite = this.loader.getSprite("collect_coin_icon.png");
     sprite.position.set(-200, -100);

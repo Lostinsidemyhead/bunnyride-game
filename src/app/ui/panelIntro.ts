@@ -39,7 +39,9 @@ class PanelIntro extends PanelBase {
     const btn = new Button("play");
     btn.position.set(170, 300);
     this.addChild(btn);
-    
+
+    const startPlayEvent = new Event("StartPlay");
+    btn.on("click", (event) => {dispatchEvent(startPlayEvent)});
   }
 
   initScoreBtn() {
