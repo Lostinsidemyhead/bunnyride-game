@@ -12,6 +12,8 @@ class App extends PIXI.Application {
   statsPanel!: PanelStats;
   state: gameState;
 
+  
+
   constructor() {
     super({
       width: window.innerWidth,
@@ -27,6 +29,8 @@ class App extends PIXI.Application {
   }
 
   init() {
+    this.stage = new PIXI.Container();
+
     const playerTexture = PIXI.Texture.from("/assets/sprites/player.png");
     this.player = new Player(250, 400, playerTexture);
     this.player.scale.set(0.5, 0.5);
@@ -39,32 +43,45 @@ class App extends PIXI.Application {
     this.introPanel.scale.set(0.75);
     this.stage.addChild(this.introPanel);
 
+    this.showStat = this.showStat.bind(this);
+    this.hideStat = this.hideStat.bind(this);
+
+    addEventListener("ShowStat", this.showStat);
+    addEventListener("HideStat", this.hideStat);
+
+    // this.endPanel = new PanelEnd(window.innerWidth / 2, window.innerHeight / 2);
+    // this.endPanel.scale.set(0.75);
+    // this.stage.addChild(this.endPanel);
+
+  }
+
+  showStat() {
     this.statsPanel = new PanelStats(
       window.innerWidth / 2,
       window.innerHeight / 2
     );
+
+    
     this.statsPanel.scale.set(0.75);
     this.stage.addChild(this.statsPanel);
+  }
 
-    this.endPanel = new PanelEnd(window.innerWidth / 2, window.innerHeight / 2);
-    this.endPanel.scale.set(0.75);
-    this.stage.addChild(this.endPanel);
+  hideStat(){
+    this.stage.removeChild(this.statsPanel);
   }
 
   draw() {
     this.onResize();
-    console.log(2);
-
     this.ticker.add(this.tick.bind(this));
+
   }
 
   tick(delta: number) {
     // if(this.state === gameState.gameOver)
     {
-      this.endPanel.tick(delta);
+      // this.endPanel.tick(delta);
     }
   }
-
 
   onResize() {
     this.renderer.resize(window.innerWidth, window.innerHeight);

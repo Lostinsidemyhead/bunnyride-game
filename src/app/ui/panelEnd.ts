@@ -14,7 +14,6 @@ class PanelEnd extends PanelBase {
   }
 
   init() {
-
     this.fx = new GameEndFx(0, 0);
     this.addChild(this.fx);
     

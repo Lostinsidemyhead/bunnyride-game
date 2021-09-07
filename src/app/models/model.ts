@@ -10,6 +10,11 @@ class Model {
   static getScoreList() {
     return Model.SCORE_LIST;
   }
+
+  static PLAYER_HIGHEST_SCORE = 0;
+  static getPlayerHigheestScore(){
+    return Model.PLAYER_HIGHEST_SCORE;
+  }
 }
 
 export default Model;

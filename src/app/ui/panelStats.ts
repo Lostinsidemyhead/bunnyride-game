@@ -57,6 +57,8 @@ class PanelStats extends PanelBase {
     const btnOk = new Button("ok");
     btnOk.position.set(0, 370);
     this.addChild(btnOk);
+    const hideStatEvent = new Event("HideStat");
+    btnOk.on("click", (event) => {dispatchEvent(hideStatEvent)});
 
     const btnLeft = new Button("arrow");
     btnLeft.position.set(-270, -310);

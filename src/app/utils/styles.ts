@@ -69,3 +69,10 @@ export const distanceStyle = new PIXI.TextStyle({
   fontSize: 58,
   fontWeight: "bold",
 });
+
+export const highStyle = new PIXI.TextStyle({
+  fill: "#119E00",
+  fontFamily: "BIPs",
+  fontSize: 90,
+  fontWeight: "bold",
+});

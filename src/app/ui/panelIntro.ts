@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { headerStyle } from "../utils/styles";
+import { headerStyle, highStyle } from "../utils/styles";
 import Button from "./button";
 import PanelBase from "./panelBase";
 
@@ -20,10 +20,11 @@ class PanelIntro extends PanelBase {
     const header = new PIXI.Text("Твои рекорды:");
     header.style = headerStyle;
     header.anchor.set(0.5, 0.5);
-    header.position.set(0, -405);
+    header.position.set(0, -420);
     this.addChild(header);
 
     const high = new PIXI.Text("Рекорд:");
+    high.style = highStyle;
     high.anchor.set(0.5, 0.5);
     high.position.set(0, -305);
     this.addChild(high);
@@ -38,12 +39,17 @@ class PanelIntro extends PanelBase {
     const btn = new Button("play");
     btn.position.set(170, 300);
     this.addChild(btn);
+    
   }
 
   initScoreBtn() {
     const btn = new Button("leadboard");
     btn.position.set(-170, 300);
     this.addChild(btn);
+
+    const showStatEvent = new Event("ShowStat");
+    btn.on("click", (event) => {dispatchEvent(showStatEvent)});
+
   }
 }
 
