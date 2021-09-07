@@ -3,6 +3,7 @@ import { headerStyle, highStyle } from "../utils/styles";
 import Button from "./button";
 import PanelBase from "./panelBase";
 
+
 class PanelIntro extends PanelBase {
   constructor(x = 0, y = 0) {
     super();
