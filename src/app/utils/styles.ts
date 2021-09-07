@@ -48,3 +48,24 @@ export const statsTitleStyle = new PIXI.TextStyle({
   fontSize: 58,
   fontWeight: "bold",
 });
+
+export const scoreStyle = new PIXI.TextStyle({
+  fill: "#119E00",
+  fontFamily: "BIPs",
+  fontSize: 130,
+  fontWeight: "bold",
+});
+
+export const moneyStyle = new PIXI.TextStyle({
+  fill: "#E77400",
+  fontFamily: "BIPs",
+  fontSize: 58,
+  fontWeight: "bold",
+});
+
+export const distanceStyle = new PIXI.TextStyle({
+  fill: "#6E9497",
+  fontFamily: "BIPs",
+  fontSize: 58,
+  fontWeight: "bold",
+});

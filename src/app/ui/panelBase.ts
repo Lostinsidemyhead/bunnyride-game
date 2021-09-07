@@ -7,7 +7,6 @@ class PanelBase extends PIXI.Container {
   constructor() {
     super();
     this.loader = new SpriteLoader("/assets/ui/ui_sheet.json");
-    this.init();
   }
 
   init() {
