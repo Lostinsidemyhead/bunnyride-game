@@ -2,9 +2,11 @@ import * as PIXI from "pixi.js";
 import Ground from "./ground";
 import Player from "./player";
 import { gameState } from "./types";
+import Button from "./ui/button";
 import PanelEnd from "./ui/panelEnd";
 import PanelIntro from "./ui/panelIntro";
 import PanelStats from "./ui/panelStats";
+import SpriteLoader from "./utils/spriteLoader";
 
 class App extends PIXI.Application {
   player!: Player;
@@ -13,6 +15,8 @@ class App extends PIXI.Application {
   statsPanel!: PanelStats;
   state: gameState;
   ground!: Ground;
+  soundBtn!: Button;
+  btnState!: boolean;
 
   constructor() {
     super({
@@ -29,14 +33,38 @@ class App extends PIXI.Application {
     this.ground.position.set(0, window.innerHeight - 400);
     this.stage.addChild(this.ground);
 
-    /** player init */
-    const playerTexture = PIXI.Texture.from("/assets/sprites/player.png");
-    this.player = new Player(250, 100, playerTexture);
-    this.player.scale.set(0.5, 0.5);
-    this.stage.addChild(this.player);
-
+    this.setUi();
     this.init();
     window.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  setUi() {
+    this.soundChange = this.soundChange.bind(this);
+    const loader = new SpriteLoader("/assets/ui/ui_sheet.json");
+    let sprite = loader.getSprite("coin_score_plate.png");
+    sprite.position.set(150, 70);
+    sprite.scale.set(0.75);
+    this.stage.addChild(sprite);
+
+    sprite = loader.getSprite("collect_coin_icon.png");
+    sprite.position.set(70, 70);
+    sprite.scale.set(0.75);
+    this.stage.addChild(sprite);
+
+    const fullScrBtn = new Button("fullscrean");
+    fullScrBtn.position.set(window.innerWidth - 350, 70);
+    this.stage.addChild(fullScrBtn);
+
+    const pauseBtn = new Button("pause");
+    pauseBtn.position.set(window.innerWidth - 70, 70);
+    this.stage.addChild(pauseBtn);
+
+    this.btnState = true;
+    this.soundBtn = new Button("sound_on");
+    this.soundBtn.position.set(window.innerWidth - 210, 70);
+    this.stage.addChild(this.soundBtn);
+
+    this.soundBtn.on("click", this.soundChange);
   }
 
   init() {
@@ -53,6 +81,8 @@ class App extends PIXI.Application {
     addEventListener("HideStat", this.hideStatPanel);
     addEventListener("StartPlay", this.startPlay);
     addEventListener("Reload", this.reload);
+
+    this.stage.addChild(this.getPlayer());
   }
 
   startPlay() {
@@ -72,7 +102,34 @@ class App extends PIXI.Application {
 
   reload() {
     this.stage.removeChild(this.getEndPanel());
+    this.stage.removeChild(this.getPlayer());
+    this.player.y = 200;
     this.init();
+  }
+
+  soundChange() {
+    this.stage.removeChild(this.soundBtn);
+
+    this.soundBtn = this.btnState
+      ? new Button("sound_off")
+      : new Button("sound_on");
+    this.btnState = this.btnState ? false : true;
+    this.soundBtn.position.set(window.innerWidth - 210, 70);
+    this.stage.addChild(this.soundBtn);
+
+    this.soundBtn.on("click", this.soundChange);
+  }
+
+  getPlayer() {
+    return this.player || this.initPlayer();
+  }
+
+  initPlayer() {
+    const playerTexture = PIXI.Texture.from("/assets/sprites/player.png");
+    this.player = new Player(250, 200, playerTexture);
+    this.player.scale.set(0.5, 0.5);
+
+    return this.player;
   }
 
   getIntroPanel() {
@@ -147,9 +204,10 @@ class App extends PIXI.Application {
     }
     if (this.state === gameState.playing) {
       this.ground.tick(delta);
-      if (this.player.y + this.player.height / 2 < this.ground.y + 50) {
-        this.player.tick(delta);
-      }
+      this.player.tick(
+        delta,
+        this.player.y + this.player.height / 2 < this.ground.y + 50
+      );
     }
   }
 

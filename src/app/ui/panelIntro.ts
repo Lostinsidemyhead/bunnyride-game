@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { headerStyle, highStyle } from "../utils/styles";
+import { headerStyle, highStyle, nameStyle } from "../utils/styles";
 import Button from "./button";
 import PanelBase from "./panelBase";
 
@@ -30,7 +30,6 @@ class PanelIntro extends PanelBase {
     high.position.set(0, -305);
     this.addChild(high);
 
-
     const count = new PIXI.Text("999");
     count.style = highStyle;
     count.anchor.set(0.5, 0.5);
@@ -41,6 +40,12 @@ class PanelIntro extends PanelBase {
     nameField.anchor.set(0.5, 0.5);
     nameField.position.set(0, 100);
     this.addChild(nameField);
+
+    const name = new PIXI.Text("Guest");
+    name.style = nameStyle;
+    name.anchor.set(0, 0.5);
+    name.position.set(-270, 100);
+    this.addChild(name);
   }
 
   initPlayBtn() {

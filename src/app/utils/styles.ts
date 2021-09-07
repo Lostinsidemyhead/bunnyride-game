@@ -47,6 +47,8 @@ export const statsTitleStyle = new PIXI.TextStyle({
   fontFamily: "BIPs",
   fontSize: 58,
   fontWeight: "bold",
+  dropShadow: true,
+  dropShadowBlur: 5
 });
 
 export const scoreStyle = new PIXI.TextStyle({
@@ -54,6 +56,8 @@ export const scoreStyle = new PIXI.TextStyle({
   fontFamily: "BIPs",
   fontSize: 130,
   fontWeight: "bold",
+  dropShadow: true,
+  dropShadowBlur: 5
 });
 
 export const moneyStyle = new PIXI.TextStyle({
@@ -61,6 +65,8 @@ export const moneyStyle = new PIXI.TextStyle({
   fontFamily: "BIPs",
   fontSize: 78,
   fontWeight: "bold",
+  dropShadow: true,
+  dropShadowBlur: 5
 });
 
 export const distanceStyle = new PIXI.TextStyle({
@@ -68,11 +74,23 @@ export const distanceStyle = new PIXI.TextStyle({
   fontFamily: "BIPs",
   fontSize: 78,
   fontWeight: "bold",
+  dropShadow: true,
+  dropShadowBlur: 5
 });
 
 export const highStyle = new PIXI.TextStyle({
   fill: "#119E00",
   fontFamily: "BIPs",
   fontSize: 90,
+  fontWeight: "bold",
+  dropShadow: true,
+  dropShadowBlur: 5,
+  dropShadowAngle: 45
+});
+
+export const nameStyle = new PIXI.TextStyle({
+  fill: "white",
+  fontFamily: "BIPs",
+  fontSize: 78,
   fontWeight: "bold",
 });
