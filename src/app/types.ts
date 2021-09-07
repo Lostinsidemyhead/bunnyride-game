@@ -11,3 +11,9 @@ export enum playerState {
   jump,
   dead
 }
+
+export enum statsPeriod {
+  allTime = 0,
+  month,
+  week
+}

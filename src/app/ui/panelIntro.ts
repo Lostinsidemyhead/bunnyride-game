@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import { headerStyle } from "../utils/styles";
 import Button from "./button";
 import PanelBase from "./panelBase";
 
@@ -8,14 +9,16 @@ class PanelIntro extends PanelBase {
     this.x = x;
     this.y = y;
 
-    this.#init();
+    this.init();
   }
 
-  #init() {
+  override init() {
+    super.init();
     this.initScoreBtn();
     this.initPlayBtn();
 
     const header = new PIXI.Text("Твои рекорды:");
+    header.style = headerStyle;
     header.anchor.set(0.5, 0.5);
     header.position.set(0, -405);
     this.addChild(header);

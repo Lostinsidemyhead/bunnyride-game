@@ -1,10 +1,14 @@
 import * as PIXI from "pixi.js";
 import Player from "./player";
 import PanelIntro from "./ui/panelIntro";
+import PanelStats from "./ui/panelStats";
+
+const MAX_WIDTH = 1280;
+const MAX_HEIGHT = 720;
 
 const app = new PIXI.Application({
-  width: 1280,
-  height: 720,
+  width: MAX_WIDTH,
+  height: MAX_HEIGHT,
   backgroundColor: 0xccdfff,
 });
 
@@ -18,20 +22,18 @@ loader.add("/assets/ui/ui_sheet.json").load(init);
 app.ticker.add((delta) => tick());
 
 function init() {
-  // const load = new SpriteLoader("/assets/ui/ui_sheet.json");
-  // const sprite1 = load.getSprite("place_1.png");
-  // sprite1.position.set(500, 200);
-  // sprite1.scale.set(1, 1);
-  // app.stage.addChild(sprite1);
-
   const playerTexture = PIXI.Texture.from("/assets/sprites/player.png");
   const player = new Player(100, 400, playerTexture);
   player.scale.set(0.5, 0.5);
   app.stage.addChild(player);
 
-  const intro = new PanelIntro(500, 500);
+  const intro = new PanelIntro(window.innerWidth/2, window.innerHeight/2);
   intro.scale.set(0.75);
   app.stage.addChild(intro);
+
+  const stats = new PanelStats(window.innerWidth/2, window.innerHeight/2);
+  stats.scale.set(0.75);
+  app.stage.addChild(stats);
 }
 
 function tick() {}

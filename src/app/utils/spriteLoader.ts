@@ -13,6 +13,7 @@ class SpriteLoader {
   getSprite(name: string): PIXI.Sprite {
     const texture = PIXI.Texture.from(name);
     const sprite = new PIXI.Sprite(texture);
+    sprite.anchor.set(0.5, 0.5);
     return sprite;
   }
 }
