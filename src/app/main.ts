@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import Player from "./player";
+import PanelEnd from "./ui/panelEnd";
 import PanelIntro from "./ui/panelIntro";
 import PanelStats from "./ui/panelStats";
 
@@ -34,6 +35,11 @@ function init() {
   const stats = new PanelStats(window.innerWidth/2, window.innerHeight/2);
   stats.scale.set(0.75);
   app.stage.addChild(stats);
+
+  const end = new PanelEnd(window.innerWidth/2, window.innerHeight/2);
+  end.scale.set(0.75);
+  app.stage.addChild(end);
 }
+
 
 function tick() {}

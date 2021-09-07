@@ -1,7 +1,15 @@
 import * as PIXI from "pixi.js";
 import Model from "../models/model";
-import { statsPeriod } from "../types";
-import { first, headerStyle, numberStyle, second, statsStyle, third } from "../utils/styles";
+import { statsPeriod, statsTitle } from "../types";
+import {
+  first,
+  headerStyle,
+  numberStyle,
+  second,
+  statsStyle,
+  statsTitleStyle,
+  third,
+} from "../utils/styles";
 import Button from "./button";
 import PanelBase from "./panelBase";
 
@@ -18,7 +26,6 @@ class PanelStats extends PanelBase {
     { x: -60, y: 235 },
     { x: -60, y: 285 },
   ];
-
   period: statsPeriod;
   statsContainer: PIXI.Container;
 
@@ -26,9 +33,8 @@ class PanelStats extends PanelBase {
     super();
     this.x = x;
     this.y = y;
-    this.period = statsPeriod.allTime;
+    this.period = statsPeriod.all;
     this.init();
-
     this.statsContainer = new PIXI.Container();
     this.addChild(this.statsContainer);
     this.initStats();
@@ -41,6 +47,12 @@ class PanelStats extends PanelBase {
     header.anchor.set(0.5, 0.5);
     header.position.set(0, -415);
     this.addChild(header);
+
+    const selector = new PIXI.Text(statsTitle[this.period]);
+    selector.style = statsTitleStyle;
+    selector.anchor.set(0.5, 0.5);
+    selector.position.set(0, -310);
+    this.addChild(selector);
 
     const btnOk = new Button("ok");
     btnOk.position.set(0, 370);
@@ -77,19 +89,11 @@ class PanelStats extends PanelBase {
 
       if (i > 2) {
         let playerNumber = new PIXI.Text((i + 1).toString());
-        
+
         playerNumber.anchor.set(0.5, 0.5);
         playerNumber.position.set(-305, this.PLACE_POSITIONS[i].y);
         playerNumber.style = numberStyle;
         this.addChild(playerNumber);
-      }
-
-      if (scoreList[i]) {
-        let playerName = new PIXI.Text(scoreList[i].name);
-        playerName.style = this.getStyle(i);
-        playerName.anchor.set(0, 0.5);
-        playerName.position.set(-250, this.PLACE_POSITIONS[i].y);
-        this.addChild(playerName);
       }
 
       spriteName =
@@ -99,6 +103,12 @@ class PanelStats extends PanelBase {
       this.statsContainer.addChild(sprite);
 
       if (scoreList[i]) {
+        let playerName = new PIXI.Text(scoreList[i].name);
+        playerName.style = this.getStyle(i);
+        playerName.anchor.set(0, 0.5);
+        playerName.position.set(-250, this.PLACE_POSITIONS[i].y);
+        this.addChild(playerName);
+
         let playerScore = new PIXI.Text(scoreList[i].score.toString());
         playerScore.style = this.getStyle(i);
         playerScore.anchor.set(0.5, 0.5);
@@ -108,7 +118,7 @@ class PanelStats extends PanelBase {
     }
   }
 
-  getStyle(i: number): PIXI.TextStyle{
+  getStyle(i: number): PIXI.TextStyle {
     let style = new PIXI.TextStyle();
     switch (i) {
       case 0:

@@ -13,7 +13,12 @@ export enum playerState {
 }
 
 export enum statsPeriod {
-  allTime = 0,
+  all = 0,
   month,
   week
+}
+export const statsTitle = {
+  [statsPeriod.all]: "Все время",
+  [statsPeriod.month]: "Месяц",
+  [statsPeriod.week]: "Неделя"
 }

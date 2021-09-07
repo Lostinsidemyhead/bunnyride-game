@@ -3,7 +3,7 @@ import * as PIXI from "pixi.js";
 export const headerStyle = new PIXI.TextStyle({
   fill: "#00157C",
   fontFamily: "BIPs",
-  fontSize: 46,
+  fontSize: 58,
   fontWeight: "bold",
 });
 
@@ -39,5 +39,12 @@ export const third = new PIXI.TextStyle({
   fill: "#B25600",
   fontFamily: "BIPs",
   fontSize: 32,
+  fontWeight: "bold",
+});
+
+export const statsTitleStyle = new PIXI.TextStyle({
+  fill: "#E77400",
+  fontFamily: "BIPs",
+  fontSize: 58,
   fontWeight: "bold",
 });
