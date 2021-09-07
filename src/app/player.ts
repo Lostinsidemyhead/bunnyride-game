@@ -15,6 +15,10 @@ class Player extends PIXI.Sprite {
   setState(state: playerState) {
     this.state = state;
   }
+
+  tick(delta: number){
+    this.y = this.y += 3 * delta;
+  }
 }
 
 export default Player;

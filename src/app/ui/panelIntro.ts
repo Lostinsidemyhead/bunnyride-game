@@ -30,6 +30,13 @@ class PanelIntro extends PanelBase {
     high.position.set(0, -305);
     this.addChild(high);
 
+
+    const count = new PIXI.Text("999");
+    count.style = highStyle;
+    count.anchor.set(0.5, 0.5);
+    count.position.set(0, -175);
+    this.addChild(count);
+
     const nameField = this.loader.getSprite("user_name_bar.png");
     nameField.anchor.set(0.5, 0.5);
     nameField.position.set(0, 100);

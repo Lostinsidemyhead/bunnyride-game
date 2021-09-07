@@ -31,7 +31,7 @@ class App extends PIXI.Application {
 
     /** player init */
     const playerTexture = PIXI.Texture.from("/assets/sprites/player.png");
-    this.player = new Player(250, 400, playerTexture);
+    this.player = new Player(250, 100, playerTexture);
     this.player.scale.set(0.5, 0.5);
     this.stage.addChild(this.player);
 
@@ -62,7 +62,7 @@ class App extends PIXI.Application {
     /** NOTE: temporary, not realized loose condition */
     setTimeout(() => {
       this.endPlay();
-    }, 5000);
+    }, 10000);
   }
 
   endPlay() {
@@ -147,6 +147,9 @@ class App extends PIXI.Application {
     }
     if (this.state === gameState.playing) {
       this.ground.tick(delta);
+      if (this.player.y + this.player.height / 2 < this.ground.y + 50) {
+        this.player.tick(delta);
+      }
     }
   }
 
