@@ -26,7 +26,7 @@ class App extends PIXI.Application {
     });
     this.state = gameState.waitingStart;
     document.body.appendChild(this.view);
-
+    
     /** ground init */
     this.ground = new Ground();
     this.ground.angle = 10;
@@ -64,7 +64,7 @@ class App extends PIXI.Application {
     this.soundBtn.position.set(window.innerWidth - 210, 70);
     this.stage.addChild(this.soundBtn);
 
-    this.soundBtn.on("click", this.soundChange);
+    this.soundBtn.on("click",  this.soundChange);
   }
 
   init() {
@@ -110,14 +110,12 @@ class App extends PIXI.Application {
   soundChange() {
     this.stage.removeChild(this.soundBtn);
 
-    this.soundBtn = this.btnState
-      ? new Button("sound_off")
-      : new Button("sound_on");
-    this.btnState = this.btnState ? false : true;
+    this.soundBtn = this.btnState? new Button("sound_off") : new Button("sound_on");
+    this.btnState = this.btnState? false: true;
     this.soundBtn.position.set(window.innerWidth - 210, 70);
     this.stage.addChild(this.soundBtn);
 
-    this.soundBtn.on("click", this.soundChange);
+    this.soundBtn.on("click",  this.soundChange);
   }
 
   getPlayer() {

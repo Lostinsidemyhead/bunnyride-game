@@ -4,6 +4,7 @@ import { playerState } from "./types";
 class Player extends PIXI.Sprite {
   state: playerState;
   up!: boolean;
+  canJump = false;
   constructor(x = 0, y = 0, texture: PIXI.Texture) {
     super(texture);
     this.anchor.set(0.5);
@@ -22,6 +23,7 @@ class Player extends PIXI.Sprite {
       this.up = true;
       setTimeout(() => {
         this.up = false;
+        this.canJump = false;
       }, 500);
     }
   }
@@ -31,7 +33,10 @@ class Player extends PIXI.Sprite {
   }
 
   tick(delta: number, isFalling: boolean) {
-    if (this.up) {
+    if (!isFalling) {
+      this.canJump = true;
+    }
+    if (this.up && this.canJump) {
       this.y = this.y -= 5 * delta;
     } else if (isFalling) {
       this.y = this.y += 3 * delta;
